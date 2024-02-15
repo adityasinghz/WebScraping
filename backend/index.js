@@ -94,7 +94,7 @@ async function fetchQuotesAmbito(browser, quotes) {
 
 async function fetchQuotesDolarHoy(browser, quotes) {
     const page = await browser.newPage();
-    await page.goto('https://www.dolarhoy.com/');
+    await page.goto('https://www.dolarhoy.com/', { waitUntil: 'networkidle2', timeout: 0 });
     await page.waitForSelector('.tile');
     const compraValue = await page.$eval('.tile .compra .val', element => element.textContent);
     const ventaValue = await page.$eval('.tile .venta .val', element => element.textContent);
@@ -107,7 +107,7 @@ async function fetchQuotesDolarHoy(browser, quotes) {
 async function fetchQuotesCronista(browser, quotes) {
     const page = await browser.newPage();
     try {
-        await page.goto('https://www.cronista.com/MercadosOnline/moneda.html?id=ARSB');
+        await page.goto('https://www.cronista.com/MercadosOnline/moneda.html?id=ARSB', { waitUntil: 'networkidle2', timeout: 0 });
         await page.waitForSelector('#market-scrll-1');
         const compraValue = await page.$eval('.buy-value', element => element.textContent.trim());
         const ventaValue = await page.$eval('.sell-value', element => element.textContent.trim());

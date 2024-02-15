@@ -10,7 +10,7 @@ app.get('/quotes', async (req, res) => {
         res.send(quotes);
     } catch (error) {
         console.error('Error fetching quotes:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error 1' });
     }
 });
 

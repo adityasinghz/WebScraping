@@ -1,7 +1,11 @@
 {
-   "rewrites": [
+   "routes": [
       {
-         "source": "/(.*)",
+         "source": "/quotes",
+         "destination": "/"
+      },
+      {
+         "source": "/average",
          "destination": "/"
       }
    ]

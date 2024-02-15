@@ -1,6 +1,6 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
-
+require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -25,7 +25,7 @@ app.get('/average', async (req, res) => {
 });
 
 async function fetchAllQuotes() {
-    const browser = await puppeteer.launch({ headless: true, defaultViewport: null });
+    const browser = await puppeteer.launch({ args: ["--disable-setuid-sandbox", "--no-sandbox", "--single-process", "--no-zygote"], executablePath: process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(), headless: true, defaultViewport: null });
     const page = await browser.newPage();
 
     const quotes = [];
@@ -56,7 +56,7 @@ async function fetchAllQuotes() {
 
 
 async function fetchDolarBlue() {
-    const browser = await puppeteer.launch({ headless: true, defaultViewport: null });
+    const browser = await puppeteer.launch({ args: ["--disable-setuid-sandbox", "--no-sandbox", "--single-process", "--no-zygote"], executablePath: process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(), headless: true, defaultViewport: null });
     const quotes = [];
 
     try {
